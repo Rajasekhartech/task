@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import tasks
+from django.contrib.auth.models import User
+from employees.models import Profile
 from django.http import Http404 , HttpResponseRedirect
 from django.views.generic import View
 from .forms import TaskForm
@@ -39,6 +41,12 @@ class TaskView(View):
         context = {"task_form" : task_form}
         return render(request, 'task/new_task.html', context)
 
+def dept1(request):
+    context = {}
+    dept_users = Profile.objects.all().filter(depatments_in_organization = 'dept1')
+    context['dept_users'] = dept_users
+    context['title'] = "Employees in department 1"
+    return render(request,'task/dept1.html', context)
 
 
 

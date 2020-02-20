@@ -20,7 +20,7 @@
 
             <form method="POST" action="/logout/" >
             {%csrf_token%}
-            <a href="#">{{request.user.first_name}} {{request.user.last_name}}</a>
+            <a href="{%url 'my_profile' %}">{{request.user.first_name}} {{request.user.last_name}}</a>
             <input type="submit" class="btn btn-danger" value="logout">
             </form>
         </div>

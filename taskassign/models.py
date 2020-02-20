@@ -15,4 +15,8 @@ class tasks(models.Model):
     def __str__(self):
         return self.title
 
-
+class assined_task(models.Model):
+    task = models.IntegerField(null= True, blank= True)
+    emp = models.IntegerField(null= True, blank= True)
+    assigned_at = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.BooleanField(default=False, null=True)
