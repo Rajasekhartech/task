@@ -8,12 +8,16 @@ from .forms import TaskForm
 
 
 # Create your views here.
+
 def home(request):
+    return render(request, "home.html")
+
+def task_page(request):
     context ={}
     task = tasks.objects.all()
     context['task'] = task
     context['title'] = 'tasks'
-    return render(request, "home.html", context)
+    return render(request, "task/tasks.html", context)
 
 def task_detail(request, id = None):
     context = {}

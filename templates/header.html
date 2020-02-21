@@ -7,12 +7,18 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+            {% if request.role == "Admin" %}
             <li class="nav-item">
-                <a class="nav-link" href="{%url 'home_page' %}"> Tasks  </a>
+                <a class="nav-link" href="{%url 'task_page' %}"> Tasks  </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{%url 'employee_list'%}"> Employees </a>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Tasks </a>
+            </li>
+            {% endif %}
         </ul>
     </div>
     {% if user.is_authenticated %}
@@ -23,6 +29,10 @@
             <a href="{%url 'my_profile' %}">{{request.user.first_name}} {{request.user.last_name}}</a>
             <input type="submit" class="btn btn-danger" value="logout">
             </form>
+        </div>
+    {% else %}
+        <div class="text-right">
+            <a href="{% url 'user_login' %}" class="btn btn-success">Login</a>
         </div>
     {% endif %}
 </div>

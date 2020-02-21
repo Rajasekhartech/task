@@ -11,7 +11,7 @@ class Profile(models.Model):
     department1 = 'dept1'
     department2 = 'dept2'
     Departments_in_Organization = [
-        (department1, "depatment1"),
+        (department1, "department1"),
         (department2, "department2"),
     ]
     depatments_in_organization = models.CharField(max_length=10, choices=Departments_in_Organization,
@@ -20,7 +20,7 @@ class Profile(models.Model):
         ordering = ('-salary',)
 
     def __str__(self):
-        return "{0} {1} ".format(self.user.first_name , self.user.last_name)
+        return "{0} {1} ".format(self.user.first_name, self.user.last_name)
 
 
 @receiver(post_save,sender =User)

@@ -1,14 +1,16 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User, Group
-
+from .models import Profile
 class UserForm(forms.ModelForm):
+    choices = (("dept1", "dept1"), ("dept2", "dept2") )
     password = forms.CharField(widget=forms.PasswordInput)
     role = forms.ModelChoiceField(queryset= Group.objects.all())
-
+    depatments_in_organization = forms.ChoiceField(help_text='Required. Select user department', choices=choices)
+#    department = forms.ModelChoiceField(Profile.objects.all())
     class Meta:
         model = User
-        fields = ['first_name', 'last_name' , 'email', 'username', 'password', ]
+        fields = ['first_name', 'last_name' , 'email', 'username', 'password', 'depatments_in_organization' ]
         label = {'password' : 'Password' }
 
     def __init__(self, *args, **kwargs):
@@ -22,6 +24,7 @@ class UserForm(forms.ModelForm):
                 initial['role'] = kwargs['instance'].groups.all()[0]
             else:
                 initial['role'] = None
+
 
         forms.ModelForm.__init__(self, *args, **kwargs)
 

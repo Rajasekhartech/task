@@ -1,4 +1,4 @@
-{% extends 'polls/base.html' %}
+{% extends 'base.html' %}
 
 
 {% block content %}
@@ -7,6 +7,7 @@
         {% csrf_token %}
         <table class="table table-bordered" >
             {{user_form.as_table}}
+
         </table>
         <br>
         <button type="submit" class="btn btn-success float-right">Add Employee</button>
